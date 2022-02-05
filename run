@@ -1,0 +1,32 @@
+#!/bin/bash
+
+source env.sh
+
+source $PROJECT_ENV'/bin/activate'
+
+case $1 in
+  "env")
+    /bin/bash -c ". $PROJECT_ENV/bin/activate; exec /bin/bash --norc -i"
+    ;;
+
+  "env_init")
+    python3 -m venv $PROJECT_ENV
+    python3 -m pip install -r docs/requirements.txt
+    ;;
+
+  'manage')
+    python3 manage.py $2
+    ;;
+
+  'start')
+    python3 manage.py runserver
+    ;;
+
+  *)
+    echo "Użycie:"
+		echo -e "$0 start${NC} - uruchomienie aplikacji django"
+		echo -e "$0 manage${NC} - komendy django"
+		echo -e "$0 env${NC} - aktywacja virtualenv"
+		echo -e "$0 env_init${NC} - inicjalizacja srodowiska virtualenv"
+    ;;
+esac
