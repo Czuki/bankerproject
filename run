@@ -2,23 +2,34 @@
 
 source env.sh
 
-source $PROJECT_ENV'/bin/activate'
+start_env() {
+	# uruchomienie python virtualenv
+	if [ -d "$PROJECT_ENV" ]; then
+		source $PROJECT_ENV/bin/activate
+	else
+		echo "Środowisko virtualenv nie uruchomione! Uruchom $0 env_init"
+	fi
+}
 
 case $1 in
   "env")
+    start_env
     /bin/bash -c ". $PROJECT_ENV/bin/activate; exec /bin/bash --norc -i"
     ;;
 
   "env_init")
     python3 -m venv $PROJECT_ENV
+    start_env
     python3 -m pip install -r docs/requirements.txt
     ;;
 
   'manage')
+    start_env
     python3 manage.py $2
     ;;
 
   'start')
+    start_env
     python3 manage.py runserver
     ;;
 

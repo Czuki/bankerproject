@@ -1,0 +1,10 @@
+version: "3"
+services:
+  web:
+    build: .
+    restart: on-failure
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/banker-docker
+    ports:
+      - "8000:8000"
