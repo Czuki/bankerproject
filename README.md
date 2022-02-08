@@ -9,7 +9,7 @@ bank-accounts management app
 - user login and registration
 - bank-account creation - using admin panel or with API
 
-####TODO:
+#### TODO:
 
 - PostgreSQL database
 - account operations - deposit/withdraw and transfer to another account - with API and user panel
@@ -28,7 +28,7 @@ add project directory as `PROJECT_ROOT` in `env.sh` file
 
 `./run start` - app will start at http://127.0.0.1:8000/
 
-###To start with docker-compose
+### To start with docker-compose
 
 `git clone git@github.com:Czuki/bankerproject.git`
 
